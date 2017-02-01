@@ -1,0 +1,101 @@
+\documentclass[10pt,a4paper]{jsarticle}
+
+\usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+%見出し表示調整
+\titleformat{\section}[hang]{\huge \bfseries}{\Huge \bfseries \thesection}{1zh}{\Huge}[{\titlerule[1pt]}]
+\titleformat{\subsection}[hang]{\Large \bfseries}{\Large \bfseries \thesubsection}{1zh}{\Large}[]
+
+%tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
+\renewcommand{\presectionname}{第}
+\renewcommand{\postsectionname}{章}
+
+\makeatletter
+
+%表紙作成マクロ
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+\def\thesis#1{\def\@thesis{#1}}
+\def\university#1{\def\@university{#1}}
+\def\supervisor#1{\def\@supervisor{#1}}
+
+\def\@maketitle{
+    \begin{center}
+    \begin{spacing}{1.5}
+    \vspace{6zh}
+    {\LARGE \@thesis \par}
+    \vspace{2zh} %タイトルの行数に応じて調整（２の倍数で設定することを推奨）
+    {\huge \bfseries \@title \par}
+    \vspace{24zh}
+    {\LARGE \@date \par}
+    \vspace{2zh}
+    {\LARGE \@university \par}
+    {\LARGE \@department \par}
+    {\LARGE \@id \quad}
+    {\LARGE \@author \par} 
+    \vspace{3zh}
+    {\LARGE 指導教員\quad \@supervisor}
+    \end{spacing}
+    \end{center}
+}
+
+%行数指定マクロ
+\def\linesparpage#1{
+    \baselineskip=\textheight
+    \divide\baselineskip by #1
+}
+
+\makeatother
+
+\title{卒論} %タイトル
+\thesis{0000年度　卒業論文} %年度
+\date{0000年0月} %日付
+\id{00000} %学籍番号
+\author{name} %指名
+\university{国立東京工業高等専門学校}
+\department{情報工学科　**研究室} %研究室名
+\supervisor{name1，name2，name3，name4} %教員名
+
+\begin{document}
+\linesparpage{36} %行数指定
+
+%表紙
+\begin{titlepage}
+\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+
+%目次
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+%本文
+\setcounter{page}{1}
+\pagestyle{plain}
+
+\section{はじめに}
+\subsection{研究の背景}
+hoge
+\subsection{いろいろ}
+fuga
+
+\section{いろいろ}
+\subsection{いろいろ}
+hoge
+
+\section{まとめ}
+hoge
+
+\section*{謝辞}
+\addcontentsline{toc}{section}{謝辞}
+hoge
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+fuga
+
+\end{document}
