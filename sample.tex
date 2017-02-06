@@ -6,8 +6,8 @@
 \usepackage{titlesec}
 
 %見出し表示調整
-\titleformat{\section}[hang]{\huge \bfseries}{\Huge \bfseries \thesection}{1zh}{\Huge}[{\titlerule[1pt]}]
-\titleformat{\subsection}[hang]{\Large \bfseries}{\Large \bfseries \thesubsection}{1zh}{\Large}[]
+\titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[1pt]}]
+\titleformat{\subsection}[hang]{\Large \gtfamily}{\Large \gtfamily \thesubsection}{1zh}{\Large}[]
 
 %tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
 \renewcommand{\presectionname}{第}
@@ -37,7 +37,7 @@
     \vspace{2zh}
     {\LARGE 指導教員\quad \@supervisor \par}
     \vspace{-62zh}
-    {\huge \bfseries \@title \par}
+    {\huge \gtfamily \@title \par}
     \end{spacing}
     \end{center}
 }
