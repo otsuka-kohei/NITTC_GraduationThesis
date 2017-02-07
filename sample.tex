@@ -4,10 +4,15 @@
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{titlesec}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[format=hang]{caption}
 
 %見出し表示調整
 \titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[2pt]}]
 \titleformat{\subsection}[hang]{\Large \gtfamily}{\Large \gtfamily \thesubsection}{1zh}{\Large}[]
+
+%キャプションの表示指定
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=large}
 
 %tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
 \renewcommand{\presectionname}{第}
