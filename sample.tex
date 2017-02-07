@@ -53,6 +53,21 @@
     \divide\baselineskip by #1
 }
 
+%refコマンドだけでは「図n hogehoge」と表示してくれないので
+\newcommand{\figuref}[1]{図\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+
+%図挿入マクロ
+\newcommand{\figre}[4][width=\textwidth]{
+    \begin{figure}[htbp]
+    \begin{center}
+    \includegraphics[#1]{#2}
+    \caption{#3}
+    \label{#4}
+    \end{center}
+    \end{figure}
+}
+
 \makeatother
 
 \title{卒論} %タイトル
