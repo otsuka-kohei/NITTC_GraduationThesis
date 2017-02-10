@@ -1,5 +1,7 @@
+%Tex Live 2016
 \documentclass[10pt,a4paper]{jsarticle}
 
+%パッケージの使用宣言（includeやimportみないなもの）
 \usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{setspace}
@@ -54,10 +56,15 @@
 }
 
 %refコマンドだけでは「図n hogehoge」と表示してくれないので
+%\figuref{hoge}と使う
 \newcommand{\figuref}[1]{図\ref{#1}}
 \newcommand{\tabref}[1]{表\ref{#1}}
 
 %図挿入マクロ
+%第1引数：画像の幅（オプション）
+%第2引数：画像ファイルのパス
+%第3引数：「図n hogehoge」のhogehoge部分
+%第4引数：figuref(ref)コマンドでの参照キー
 \newcommand{\fig}[4][width=\textwidth]{
     \begin{figure}[htbp]
     \begin{center}
@@ -75,7 +82,7 @@
 \date{0000年0月} %日付
 \id{00000} %学籍番号
 \author{name} %氏名
-\university{国立東京工業高等専門学校}
+\university{国立東京工業高等専門学校} %学校名
 \department{情報工学科　**研究室} %研究室名
 \supervisor{name1，name2，name3，name4} %教員名
 
@@ -93,29 +100,38 @@
 \thispagestyle{empty}
 \newpage
 
-%本文
+%以下本文
 \setcounter{page}{1}
 \pagestyle{plain}
 
 \section{はじめに}
+
 \subsection{研究の背景}
-hoge
+hoge\cite{hoge}
+
 \subsection{いろいろ}
 fuga
 
 \section{いろいろ}
+
 \subsection{いろいろ}
 hoge
 
 \section{まとめ}
 hoge
 
-\section*{謝辞}
-\addcontentsline{toc}{section}{謝辞}
+\section*{謝辞} %章番号を振らないセクションの作成
+\addcontentsline{toc}{section}{謝辞} %章番号がないセクションを目次に表示させる
 hoge
 
-\section*{参考文献}
+\begin{flushleft} %左寄せ
+\begin{thebibliography}{9} %参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
 \addcontentsline{toc}{section}{参考文献}
-fuga
+
+\bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
+fuga %参考文献の説明
+
+\end{thebibliography}
+\end{flushleft}
 
 \end{document}
