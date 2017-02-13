@@ -55,17 +55,17 @@
     \divide\baselineskip by #1
 }
 
-%「図n hogehoge」と表示してくれないので
+%refコマンドだけでは「図n hogehoge」と表示してくれないので
+%\figuref{hoge}と使う
+\newcommand{\figuref}[1]{図\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+
 \renewcommand{\figurename}{図}
 \renewcommand{\tablename}{表}
 
-%図挿入マクロ
-%第1引数：画像の幅（オプション）
-%第2引数：画像ファイルのパス
-%第3引数：「図n hogehoge」のhogehoge部分
-%第4引数：figuref(ref)コマンドでの参照キー
+%図表示用マクロ
 \newcommand{\fig}[4][width=\textwidth]{
-    \begin{figure}[htbp]
+    \begin{figure}[!h]
     \begin{center}
     \includegraphics[#1]{#2}
     \caption{#3}
