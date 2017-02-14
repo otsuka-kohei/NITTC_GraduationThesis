@@ -8,6 +8,7 @@
 \usepackage{titlesec}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[format=hang]{caption}
+\usepackage{listings, jlisting}
 
 %見出し表示調整
 \titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[2pt]}]
@@ -15,6 +16,8 @@
 
 %キャプションの表示指定
 \captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=large}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=large}
+\captionsetup[lstlisting]{format=plain, labelformat=simple, labelsep=quad, font=large}
 
 %tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
 \renewcommand{\presectionname}{第}
@@ -72,6 +75,22 @@
     \label{#4}
     \end{center}
     \end{figure}
+}
+
+%リスト表示用設定
+\renewcommand{\lstlistingname}{リスト}
+\newcommand{\lstref}[1]{リスト\ref{#1}}
+\lstset{language=,
+    basicstyle=\normalsize,
+    commentstyle=\textit,
+    classoffset=1,
+    keywordstyle=\bfseries,
+    frame=tRBl,
+    framesep=5pt,
+    showstringspaces=false,
+    numbers=left,
+    stepnumber=1,
+    numberstyle=\large
 }
 
 \makeatother
