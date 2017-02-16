@@ -1,4 +1,6 @@
 %Tex Live 2016
+%pLaTeXでコンパイル
+%目次や図・参考文献の参照（\figuref や \cite）を利用する場合は2回コンパイルしないと正しいPDFが生成されない（そういう仕様）
 \documentclass[10pt,a4paper]{jsarticle}
 
 %パッケージの使用宣言（includeやimportみないなもの）
@@ -80,7 +82,9 @@
 %リスト表示用設定
 \renewcommand{\lstlistingname}{リスト}
 \newcommand{\lstref}[1]{リスト\ref{#1}}
-\lstset{language=,
+\lstset{
+    %language=, （言語を指定しない場合（対応していない言語を含む））
+    language=C, %C言語を指定
     basicstyle=\normalsize,
     commentstyle=\textit,
     classoffset=1,
@@ -130,10 +134,16 @@ hoge\cite{hoge}
 \subsection{いろいろ}
 fuga
 
+\fig{image/atom.jpg}{原子}{atom}
+
+\figuref{atom}は原子です\cite{irasutoya}．
+
 \section{いろいろ}
 
 \subsection{いろいろ}
 hoge
+\lstinputlisting[caption=Hello Wordのソースコード,label=helloworld]{src/hello_world.c}
+\lstref{helloworld}はCのソースコードです．
 
 \section{まとめ}
 hoge
@@ -148,6 +158,11 @@ hoge
 
 \bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
 fuga %参考文献の説明
+
+\bibitem{irasutoya}
+いらすとや，原子のイラスト，
+\\ %改行
+http://www.irasutoya.com/2017/02/blog-post\_20.html %_（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
 
 \end{thebibliography}
 \end{flushleft}
