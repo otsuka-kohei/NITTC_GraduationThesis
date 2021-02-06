@@ -85,18 +85,20 @@
 \renewcommand{\lstlistingname}{リスト}
 \newcommand{\lstref}[1]{リスト\ref{#1}}
 \lstset{
-    %language=, （言語を指定しない場合（対応していない言語を含む））
-    language=C, %例：C言語を指定
-    basicstyle=\normalsize,
+    language=,
+    % language=, %（言語を指定しない場合（対応していない言語を含む））
+    % language=Python, % 例：Pythonを指定
+    basicstyle=\small\ttfamily,
     commentstyle=\textit,
-    classoffset=1,
+    classoffset=0,
     keywordstyle=\bfseries,
     frame=tRBl,
     framesep=5pt,
     showstringspaces=false,
     numbers=left,
     stepnumber=1,
-    numberstyle=\large
+    numberstyle=\small,
+    breaklines=true
 }
 
 \makeatother
