@@ -80,6 +80,19 @@
     \end{figure}
 }
 
+%表の画像表示用マクロ
+%Excelなどで作成した表を画像として取り込む
+%\tablefig{source path}{caption}{label}
+\newcommand{\tablefig}[4][width=\textwidth]{
+    \begin{table}[H]
+        \begin{center}
+            \caption{#3}
+            \includegraphics[#1]{#2}
+            \label{#4}
+        \end{center}
+    \end{table}
+}
+
 %リスト表示用設定
 %jlistingのインストールが必要
 \renewcommand{\lstlistingname}{リスト}
@@ -100,6 +113,14 @@
     numberstyle=\small,
     breaklines=true
 }
+
+%図番号などを章ごとに分ける場合（図32 -> 図3-1）は以下のコメントアウトを外す
+%\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
+%\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+%\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+%\@addtoreset{equation}{section}
+%\@addtoreset{figure}{section}
+%\@addtoreset{table}{section}
 
 \makeatother
 
