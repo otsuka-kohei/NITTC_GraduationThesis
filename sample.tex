@@ -72,11 +72,11 @@
 %\fig{source path}{caption}{label}
 \newcommand{\fig}[4][width=\textwidth]{
     \begin{figure}[!h]
-    \begin{center}
-    \includegraphics[#1]{#2}
-    \caption{#3}
-    \label{#4}
-    \end{center}
+        \begin{center}
+            \includegraphics[#1]{#2}
+            \caption{#3}
+            \label{#4}
+        \end{center}
     \end{figure}
 }
 
@@ -134,62 +134,70 @@
 \supervisor{name1，name2，name3，name4} %教員名
 
 \begin{document}
-\linesparpage{36} %行数指定
+    \linesparpage{36} %行数指定
 
-%表紙
-\begin{titlepage}
-\maketitle
-\thispagestyle{empty}
-\end{titlepage}
+    %表紙
+    \begin{titlepage}
+        \maketitle
+        \thispagestyle{empty}
+    \end{titlepage}
 
-%目次
-\tableofcontents
-\thispagestyle{empty}
-\newpage
+    %目次
+    \tableofcontents
+    \thispagestyle{empty}
+    \newpage
 
-%以下本文
-\setcounter{page}{1}
-\pagestyle{plain}
+    %以下本文
+    \setcounter{page}{1}
+    \pagestyle{plain}
 
-\section{はじめに}
+    \section{はじめに}
 
-\subsection{研究の背景}
-hoge\cite{hoge}
+        \subsection{研究の背景}
+            hoge\cite{hoge}
 
-\subsection{いろいろ}
-fuga
+        \subsection{いろいろ}
+            fuga
 
-\fig{image/atom.jpg}{原子}{atom}
+            \fig{image/atom.jpg}{原子}{atom}
 
-\figuref{atom}は原子です\cite{irasutoya}．
+            \figuref{atom}は原子です\cite{irasutoya}．
 
-\section{いろいろ}
+        \newpage
 
-\subsection{いろいろ}
-hoge
-\lstinputlisting[caption=Hello Wordのソースコード,label=helloworld]{src/hello_world.c}
-\lstref{helloworld}はCのソースコードです．
+    \section{いろいろ}
 
-\section{まとめ}
-hoge
+        \subsection{いろいろ}
+            hoge
+            \lstinputlisting[caption=Hello Wordのソースコード,label=helloworld]{src/hello_world.c}
+            \lstref{helloworld}はCのソースコードです．
 
-\section*{謝辞} %章番号を振らないセクションの作成
-\addcontentsline{toc}{section}{謝辞} %章番号がないセクションを目次に表示させる
-hoge
+        \newpage
 
-\begin{flushleft} %左寄せ
-\begin{thebibliography}{9} %参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
-\addcontentsline{toc}{section}{参考文献}
+    \section{まとめ}
+        hoge
 
-\bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
-fuga %参考文献の説明
+        \newpage
 
-\bibitem{irasutoya}
-いらすとや，原子のイラスト，
-\\ %改行
-http://www.irasutoya.com/2017/02/blog-post\_20.html %_（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
+    \section*{謝辞} %章番号を振らないセクションの作成
+    \addcontentsline{toc}{section}{謝辞} %章番号がないセクションを目次に表示させる
+        hoge
 
-\end{thebibliography}
-\end{flushleft}
+        \newpage
+
+    \begin{flushleft} %左寄せ
+        \begin{thebibliography}{9} %参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
+            \addcontentsline{toc}{section}{参考文献}
+
+            \bibitem{hoge} %hogeは参考文献の参照キーで \cite{hoge} と使う
+                fuga %参考文献の説明
+
+            \bibitem{irasutoya}
+                いらすとや，原子のイラスト，
+                \\ %改行
+                http://www.irasutoya.com/2017/02/blog-post\_20.html %_（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
+
+        \end{thebibliography}
+    \end{flushleft}
 
 \end{document}
