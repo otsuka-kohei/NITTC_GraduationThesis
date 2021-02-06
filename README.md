@@ -1,8 +1,7 @@
 東京高専情報工学科の卒業論文のLaTeXひな型です。
 
 先輩などから受け継がれているwordファイルの書式に似せて作りました。
-  
-  
+
 参考に、VSCodeのTeX用拡張機能[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)用のコンパイルレシピを以下に示します。
 ```
 {
