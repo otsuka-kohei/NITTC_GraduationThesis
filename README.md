@@ -1,6 +1,9 @@
-東京高専情報工学科の卒業論文のLaTeXひな型です。
+東京高専情報工学科の卒業論文のLaTeXテンプレートです。  
 
-先輩などから受け継がれているwordファイルの書式に似せて作りました。
+卒業論文テンプレートのWordファイルに似せて作りました。
+
+sample.tex : 2020年2月現在の卒業論文テンプレート  
+old.tex : リポジトリ管理者が高専生だったころの卒業論文テンプレート
 
 参考に、VSCodeのTeX用拡張機能[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)用のコンパイルレシピを以下に示します。
 ```
