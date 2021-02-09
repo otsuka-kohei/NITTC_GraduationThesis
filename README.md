@@ -2,7 +2,7 @@
 
 卒業論文テンプレートのWordファイルに似せて作りました。
 
-sample.tex : 2020年2月現在の卒業論文テンプレート  
+sample.tex : 2021年2月現在の卒業論文テンプレート  
 old.tex : リポジトリ管理者が高専生だったころの卒業論文テンプレート
 
 参考に、VSCodeのTeX用拡張機能[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)用のコンパイルレシピを以下に示します。
