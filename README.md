@@ -5,7 +5,7 @@
 sample.tex : 2021年2月現在の卒業論文テンプレート  
 old.tex : リポジトリ管理者が高専生だったころの卒業論文テンプレート
 
-[sample.pdf](https://github.com/otsuka-kohei/NITTC_GraduationThesis/files/5949085/sample.pdf)
+コンパイル例 : [sample.pdf](https://github.com/otsuka-kohei/NITTC_GraduationThesis/files/5949085/sample.pdf)
 
 参考に、VSCodeのTeX用拡張機能[LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)用のコンパイルレシピを以下に示します。
 ```
