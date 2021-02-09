@@ -1,0 +1,203 @@
+% Tex Live 2020
+% upLaTeXでコンパイル
+% 目次や図・参考文献の参照（\figuref や \cite）を利用する場合は2回コンパイルしないと正しいPDFが生成されない（そういう仕様）
+\documentclass[10pt, a4paper, uplatex]{jsarticle}
+
+% パッケージの使用宣言（includeやimportみないなもの）
+\usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[format=hang]{caption}
+\usepackage{listings, jlisting}
+
+% 見出し表示調整
+\titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[2pt]}]
+\titleformat{\subsection}[hang]{\Large \gtfamily}{\Large \gtfamily \thesubsection}{1zh}{\Large}[]
+
+% キャプションの表示指定
+\captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=large}
+\captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=large}
+\captionsetup[lstlisting]{format=plain, labelformat=simple, labelsep=quad, font=large}
+
+% tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
+\renewcommand{\presectionname}{第}
+\renewcommand{\postsectionname}{章}
+
+\makeatletter
+
+% 表紙作成マクロ
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+\def\thesis#1{\def\@thesis{#1}}
+\def\university#1{\def\@university{#1}}
+\def\supervisor#1{\def\@supervisor{#1}}
+
+\def\@maketitle{
+    \begin{center}
+    \begin{spacing}{1.5}
+    \vspace*{4zh}
+    {\LARGE \@thesis \par}
+    \vspace{36zh}
+    {\LARGE \@date \par}
+    \vspace{2zh}
+    {\LARGE \@university \par}
+    {\LARGE \@department \par}
+    {\LARGE \@id \quad}
+    {\LARGE \@author \par} 
+    \vspace{2zh}
+    {\LARGE 指導教員\quad \@supervisor \par}
+    \vspace{-62zh}
+    {\huge \gtfamily \@title \par}
+    \end{spacing}
+    \end{center}
+}
+
+% 行数指定マクロ
+\def\linesparpage#1{
+    \baselineskip=\textheight
+    \divide\baselineskip by #1
+}
+
+% refコマンドだけでは「図n hogehoge」と表示してくれないので
+% \figuref{label}
+\newcommand{\figuref}[1]{図\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+
+% 図表示用マクロ
+% \fig{source path}{caption}{label}
+\newcommand{\fig}[4][width=\textwidth]{
+    \begin{figure}[!h]
+        \begin{center}
+            \includegraphics[#1]{#2}
+            \caption{#3}
+            \label{#4}
+        \end{center}
+    \end{figure}
+}
+
+% 表の画像表示用マクロ
+% Excelなどで作成した表を画像として取り込む
+% \tablefig{source path}{caption}{label}
+\newcommand{\tablefig}[4][width=\textwidth]{
+    \begin{table}[H]
+        \begin{center}
+            \caption{#3}
+            \includegraphics[#1]{#2}
+            \label{#4}
+        \end{center}
+    \end{table}
+}
+
+% リスト表示用設定
+% jlistingのインストールが必要
+\renewcommand{\lstlistingname}{リスト}
+\newcommand{\lstref}[1]{リスト\ref{#1}}
+\lstset{
+    language=,
+    % language=, % （言語を指定しない場合（対応していない言語を含む））
+    % language=Python, %  例：Pythonを指定
+    basicstyle=\small\ttfamily,
+    commentstyle=\textit,
+    classoffset=0,
+    keywordstyle=\bfseries,
+    frame=tRBl,
+    framesep=5pt,
+    showstringspaces=false,
+    numbers=left,
+    stepnumber=1,
+    numberstyle=\small,
+    breaklines=true
+}
+
+% 図番号などを章ごとに分ける場合（図32 -> 図3-1）は以下のコメントアウトを外す
+% \renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
+% \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+% \renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+% \@addtoreset{equation}{section}
+% \@addtoreset{figure}{section}
+% \@addtoreset{table}{section}
+
+\makeatother
+
+\title{卒論} % タイトル
+\thesis{0000年度\quad 卒業論文} % 年度
+\date{0000年0月} % 日付
+\id{00000} % 学籍番号
+\author{name} % 氏名
+\university{国立東京工業高等専門学校} % 学校名
+\department{情報工学科\quad **研究室} % 研究室名
+\supervisor{name1，name2，name3，name4} % 教員名
+
+\begin{document}
+    \linesparpage{36} % 行数指定
+
+    % 表紙
+    \begin{titlepage}
+        \maketitle
+        \thispagestyle{empty}
+    \end{titlepage}
+
+    % 目次
+    \tableofcontents
+    \thispagestyle{empty}
+    \newpage
+
+    % 以下本文
+    \setcounter{page}{1}
+    \pagestyle{plain}
+
+    \section{はじめに}
+
+        \subsection{研究の背景}
+            hoge\cite{hoge}
+
+        \subsection{いろいろ}
+            fuga
+
+            \fig{image/atom.jpg}{原子}{atom}
+
+            \figuref{atom}は原子です\cite{irasutoya}．
+
+        \newpage
+
+    \section{いろいろ}
+
+        \subsection{いろいろ}
+            hoge
+            \lstinputlisting[caption=Hello Wordのソースコード,label=helloworld]{src/hello_world.c}
+            \lstref{helloworld}はCのソースコードです．
+
+        \newpage
+
+    \section{まとめ}
+        hoge
+
+        \newpage
+
+    \section*{謝辞} % 章番号を振らないセクションの作成
+    \addcontentsline{toc}{section}{謝辞} % 章番号がないセクションを目次に表示させる
+        hoge
+
+        \newpage
+
+    \begin{flushleft} % 左寄せ
+        \begin{thebibliography}{9} % 参考文献一覧　参考文献の個数が1桁なら9，2桁なら99...といった感じで
+            \addcontentsline{toc}{section}{参考文献}
+
+            \bibitem{hoge} % hogeは参考文献の参照キーで \cite{hoge} と使う
+                fuga % 参考文献の説明
+
+            \bibitem{irasutoya}
+                いらすとや，原子のイラスト，
+                \\ % 改行
+                http://www.irasutoya.com/2017/02/blog-post\_20.html % _（アンダースコア）など一部の文字は\などでエスケースさせる必要あり
+
+        \end{thebibliography}
+    \end{flushleft}
+
+\end{document}
