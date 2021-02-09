@@ -1,7 +1,7 @@
 % Tex Live 2020
 % upLaTeXでコンパイル
 % 目次や図・参考文献の参照（\figuref や \cite）を利用する場合は2回コンパイルしないと正しいPDFが生成されない（そういう仕様）
-\documentclass[10pt, a4paper, uplatex]{jsarticle}
+\documentclass[10,5pt, a4paper, uplatex]{jsarticle}
 
 % パッケージの使用宣言（includeやimportみないなもの）
 \usepackage[top=35truemm,bottom=30truemm,left=30truemm,right=30truemm]{geometry}
@@ -11,46 +11,55 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[format=hang]{caption}
 \usepackage{listings, jlisting}
+\usepackage{titletoc}
+\usepackage{tocloft}
 
 % 見出し表示調整
-\titleformat{\section}[hang]{\huge \gtfamily}{\Huge \gtfamily \thesection}{1zh}{\Huge}[{\titlerule[2pt]}]
-\titleformat{\subsection}[hang]{\Large \gtfamily}{\Large \gtfamily \thesubsection}{1zh}{\Large}[]
+\titleformat{\section}[hang]{\fontsize{18pt}{18pt} \selectfont}{\fontsize{18pt}{18pt} \selectfont \mcfamily 第\thesection 章}{1zw}{\fontsize{18pt}{18pt} \selectfont \gtfamily}[]
+\titleformat{\subsection}[hang]{\fontsize{14pt}{14pt} \selectfont}{\fontsize{14pt}{14pt} \selectfont \gtfamily \thesubsection}{1zw}{\fontsize{14pt}{14pt} \selectfont \gtfamily}[]
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\titleformat{\subsubsection}[hang]{\fontsize{10.5pt}{10.5pt} \selectfont}{\fontsize{10.5pt}{10.5pt} \selectfont \gtfamily (\thesubsubsection)}{1zw}{\fontsize{10.5pt}{10.5pt} \selectfont \gtfamily}[]
+
+% 目次表示調整
+\renewcommand{\contentsname}{\begin{center} \fontsize{16pt}{16pt} \selectfont\gtfamily 目次\end{center}}
+\titlecontents{section}[1zw]{}{第\thecontentslabel 章\quad}{}{\titlerule*{.}\thecontentspage}
+\titlecontents{subsection}[1zw]{\quad}{\thecontentslabel \quad}{}{\titlerule*{.}\thecontentspage}
+\titlecontents{subsubsection}[1zw]{\quad \quad}{(\thecontentslabel) \quad}{}{\titlerule*{.}\thecontentspage}
 
 % キャプションの表示指定
 \captionsetup[figure]{format=plain, labelformat=simple, labelsep=quad, font=large}
 \captionsetup[table]{format=plain, labelformat=simple, labelsep=quad, font=large}
 \captionsetup[lstlisting]{format=plain, labelformat=simple, labelsep=quad, font=large}
 
-% tocloftパッケージを使用すると「第n章」とタイトルの「hogehoge」か被るので注意
-\renewcommand{\presectionname}{第}
-\renewcommand{\postsectionname}{章}
-
 \makeatletter
 
 % 表紙作成マクロ
+\def\thesis#1{\def\@thesis{#1}}
 \def\id#1{\def\@id{#1}}
 \def\department#1{\def\@department{#1}}
-\def\thesis#1{\def\@thesis{#1}}
 \def\university#1{\def\@university{#1}}
 \def\supervisor#1{\def\@supervisor{#1}}
+\def\laboratory#1{\def\@laboratory{#1}}
+\def\studentnumber#1{\def\@studentnumber{#1}}
 
 \def\@maketitle{
     \begin{center}
-    \begin{spacing}{1.5}
-    \vspace*{4zh}
-    {\LARGE \@thesis \par}
-    \vspace{36zh}
-    {\LARGE \@date \par}
-    \vspace{2zh}
-    {\LARGE \@university \par}
-    {\LARGE \@department \par}
-    {\LARGE \@id \quad}
-    {\LARGE \@author \par} 
-    \vspace{2zh}
-    {\LARGE 指導教員\quad \@supervisor \par}
-    \vspace{-62zh}
-    {\huge \gtfamily \@title \par}
-    \end{spacing}
+        {\fontsize{10.5pt}{10.5pt} \selectfont \vspace*{1zh}}
+        {\fontsize{18pt}{18pt} \selectfont \@thesis \par}
+        {
+            \fontsize{14pt}{14pt}\selectfont
+            \vspace{24zh}
+            \@university \quad \@department \par
+            \vspace{1.75zh}
+            \@laboratory \par
+            \vspace{1.75zh}
+            学籍番号:\@id \par
+            \vspace{1.75zh}
+            5J\@studentnumber \quad \@author \par
+            \vspace{4.5zh}
+            指導教員 \quad \@supervisor \par
+        }
+        {\fontsize{24pt}{24pt} \vspace{-41zh} \selectfont \gtfamily \@title}
     \end{center}
 }
 
@@ -124,13 +133,14 @@
 
 \makeatother
 
-\title{卒論} % タイトル
-\thesis{0000年度\quad 卒業論文} % 年度
-\date{0000年0月} % 日付
+\thesis{令和XX年度卒業研究} % 年度
+\title{卒業論文} % タイトル
 \id{00000} % 学籍番号
+\studentnumber{XX}
 \author{name} % 氏名
-\university{国立東京工業高等専門学校} % 学校名
-\department{情報工学科\quad **研究室} % 研究室名
+\university{東京工業高等専門学校} % 学校名
+\department{情報工学科} % 学科名
+\laboratory{XX研究室} % 研究室名
 \supervisor{name1，name2，name3，name4} % 教員名
 
 \begin{document}
@@ -143,6 +153,7 @@
     \end{titlepage}
 
     % 目次
+    \setcounter{tocdepth}{3}
     \tableofcontents
     \thispagestyle{empty}
     \newpage
@@ -155,6 +166,8 @@
 
         \subsection{研究の背景}
             hoge\cite{hoge}
+
+            \subsubsection{あああ}
 
         \subsection{いろいろ}
             fuga
